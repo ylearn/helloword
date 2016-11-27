@@ -1,0 +1,43 @@
+﻿{
+    "MenuItem": [
+        {
+            "Title": "Home",
+            "url": "#",
+            "img": "",
+            "items": [
+                {
+                    "title": "Sub1"
+                },
+                {
+                    "title": "Sub2"
+                }
+            ]
+        },
+      {
+        "Title": "Blog",
+        "url": "#",
+        "img": "",
+        "items": [
+          {
+            "title": "Sub1"
+          },
+          {
+            "title": "Sub2"
+          }
+        ]
+      },
+      {
+            "Title": "About",
+            "url": "#",
+            "img": "",
+            "items": [
+                {
+                    "title": "Sub1"
+                },
+                {
+                    "title": "Sub2"
+                }
+            ]
+        }
+    ]
+}

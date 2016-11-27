@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        body {
+            text-align:center;
+            background-color:#B3B3B3;
+              
+               
+        }
+        .header-background {
+            width:80%;
+            height:400px;
+            margin-top:-10px;
+           
+        }
+        .menuItem li {
+            float:left;
+            margin-top:50px;
+            margin-left:20px;
+            margin-left:20px;
+            list-style-type:none;
+            color:white;
+            width:100px;
+            font-size:20px;
+                        
+        }
+        .menuItem ul{
+            padding-left:10px;
+        }
+        li{
+            list-style-type:none;
+        }
+        .menuItem li:hover {
+            color:gray;
+        }
+        .menuItem {
+            margin-top:-400px;
+            position:absolute;
+            z-index:3;
+            margin-left:20%;
+            
+        }
+        .menu
+        {
+            text-align:center
+
+        }
+        .contents{
+            width:80%;
+            background-color:white;
+            margin-left:10%;
+            float:left;
+            font-family:Calibri;
+        }
+        .titleList{
+            width:25%;
+            text-align:left;
+            float:left;
+            padding-left:5px;
+        }
+        .article{
+            width:70%;
+            float:left;
+            margin:10px;
+        }
+        .header-img{
+            min-height:25px;
+            min-width:25px;
+            max-height:40px;
+            max-width:40px
+        }
+        .comment{
+            width:90%;   
+        }
+        .comTop{
+            width:95%;
+            margin:10px;
+            height: 30px;
+        }
+        .header-img {
+            min-height: 25px;
+            min-width: 25px;
+            max-height: 40px;
+            max-width: 40px;
+            float: left;
+        }
+        .headName{
+            float: left;
+            text-align: center; 
+            margin-left:10px;         
+        }
+        .commTime{
+            float: left;
+            margin-left: 20px;
+        }
+        .comContent{            
+            text-align: left;
+            margin-left: 60px;
+            width: 95%;
+        }
+        .btn-reply{
+            float: right;
+            margin-right: 20px;
+            background-color:rgba(179, 179, 179, 1);
+            color:white;
+        }
+        .submitCom{
+            width:90%;
+            height:70px;
+
+        }
+        .newComment{
+            width:80%;
+            overflow-y:auto;
+        }
+        .btn {
+            float: right;
+            margin-top: 10px;
+            margin-left: 20px;
+
+           
+            background-color:rgba(179, 179, 179, 1);
+            color:white;
+        }
+        .comBtn{
+            width: 90%;
+        }
+        .article hr{
+            margin-top:50px;
+            margin-bottom:50px;
+        }
+        .subReply{
+            width:70%;
+            margin-left:100px;
+        }
+        
+
+
+
+    </style>
+    <script src="../js/angular.js"></script>    
+    <script>
+        var app = angular.module("ngApp", []);
+        app.controller("menuItem", function ($scope, $http) {
+            $http.get("../Config/Menu.json").then(function (MenuItems) {            
+                $scope.Items = MenuItems.data.MenuItem;
+            })            
+        })
+        
+        app.controller('contentList', function ($scope, $http) {
+            $http.get("../Config/articles.json").then(function (response) {
+                $scope.articles = response.data.articles;
+            });
+        });
+        app.controller('commentsCotr', function ($scope, $http) {
+            $scope.ReplyCon = '';
+            $scope.newComment = '';
+            $http.get("../Config/Comments.json").then(function (response) {
+                $scope.comments = response.data.Comments;
+            })
+
+            $scope.Submit = function () {
+                var currDate = new Date();
+                if ($scope.newComment == "") {
+                        alert("Please enter your comment,thanks!")
+                } else {
+                    var conCom = {};
+                    conCom.Comment = $scope.newComment;
+                    conCom.commnetBy = "Young.Z";
+                    conCom.CommentDate = currDate;
+                    conCom.CommentImg = "../imgs/header/005.jpg";
+                    $scope.comments.unshift(conCom);
+                    $scope.newComment = "";
+                }
+                
+            }
+            $scope.Cancel = function () {
+                $scope.newComment="";
+            }
+            $scope.Reply = function () { alert("R") }
+        })
+    </script>
+    
+</head>
+<body ng-app="ngApp" >
+    <header>        
+        <img class="header-background" ng-src="../imgs/bg.jpg" />     
+        <div class="menu">
+            <ul class="menuItem" ng-controller="menuItem">
+                <li ng-repeat="x in Items">{{x.Title}}</li>                
+            </ul>
+        </div> 
+    </header> 
+    <div class="contents">
+        <article class="titleList">
+            <fieldset>
+                <legend>Article List</legend>
+                <ul ng-controller="contentList">
+                    <li ng-repeat="x in articles">{{x.Title}}  </li>
+                </ul>
+            </fieldset>
+        </article>
+        <article class="article">
+            <h1>Zhu Ting leads Vakifbank to dramatic victory over World Club Champions Eczacibasi </h1>
+            <div>
+                <p>
+                    Vakifbank player Zhu Ting (L) poses for a photo with Milena Rasic during the Turkish Women Volleyball League match between Eczacibasi and Vakifbank in Istanbul, Turkey, Nov 26, 2016. [Photo/Xinhua]
+
+
+                    ISTANBUL - Chinese star Zhu Ting inspired Vakifbank to a dramatic come-from-behind victory over 2016 World Club Championship title holder Eczacibasi at Turkish Women Volleyball League - Vestel Venus Sultans League here on Saturday.
+
+                    Vakifbank took sweet revenge with the 3-2 win (27-29, 17-25, 25-22, 25-21, 15-10) against the opponents, whom they lost to in the semifinals of the World Club Championship last month in the Philippines.
+
+                    Both teams boast world top players and this match was described as Barcelona versus Real Madrid in Volleyball World.
+
+                    Zhu Ting top scored for Vakifbank with 28 points, and her teammates Milena Rasic added 16 points and Gozde Kirdar 15 points.
+
+                    At Eczacibasi side, Tatiana Kosheleva had 21 points and Tijana Boskovic 17 points.
+
+                    Zhu Ting, the MVP of Rio Olympics volleyball tournament, said that she was satisfied with her peroformance. "It could not be a better birthday gift for me," said Zhu, who turns 22 on Tuesday.
+
+                    She also thanked the Chinese supporters who traved a long distance from China to cheer her up in Turkey.
+
+                    Vakifbank head coach Giovanni Guidetti praised his team's comeback from 0-2 in the first two sets and 10-20 down in the third set, as it could happend one time in every 100, even 1000 matches.
+
+                    "Zhu did something extroadinary. I did not see how many points she got, maybe more than 30 points. I also want to thank my bench player, because they did an amazing job, this is a result we work every day, this is the result of their power," said Guidetti.
+
+                </p>
+            </div>
+            <hr />
+            <div class="comments" ng-controller="commentsCotr">
+                <div class="submitCom">
+                    <textarea class="newComment" ng-model="newComment"></textarea>
+                    <div class="comBtn">
+                        <button class="btn" ng-click="Submit()">Submit</button>
+                        <button class="btn" ng-click="Cancel()">Cancel</button>
+                    </div>                    
+                </div>
+                <div class="commentList">
+                    <div class="comment" ng-repeat="x in comments ">
+                        <div class="comTop">
+                            <img class="header-img" src="{{x.CommentImg}}" />
+                            <label class="headName">{{x.commnetBy}}</label>
+                            <label class="commTime">{{x.CommentDate|date:"yyyy-MM-dd HH:mm"}}</label>
+                        </div>
+                        <div class="comContent">{{x.Comment}}</div>
+                        <div class="subReply" ng-repeat="sub in x.Reply">
+                            <div class="comTop">
+                                <!--<img class="header-img" src="{{sub.CommentImg}}" />-->
+                                <label class="headName">{{sub.commnetBy}}</label>
+                                <label class="commTime">{{sub.CommentDate|date:"yyyy-MM-dd HH:mm"}}</label>
+                            </div>
+                            <div class="comContent">{{sub.Comment}}</div>
+                        </div>
+                        <button class="btn-reply" ng-click="Reply()">Reply</button>
+                        <textarea ng-model="ReplyCon" ng-show="false"></textarea>
+                        <!--<div>
+                            <textarea ng-model="ReplyCon"></textarea>                            
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+     
+  
+</body>
+</html>
